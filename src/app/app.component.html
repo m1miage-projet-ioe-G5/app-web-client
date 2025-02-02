@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <label>Amorce moovly</label>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer mode="side" (openedChange)="onDrawerToggle()">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/presentation" routerLinkActive="active">
+        <mat-icon>home</mat-icon>
+        <span>Présentation</span>
+      </a>
+      <a mat-list-item routerLink="/leaflet" routerLinkActive="active">
+        <mat-icon>map</mat-icon>
+        <span>Cartographie</span>
+      </a>
+      <a mat-list-item routerLink="/lists" routerLinkActive="active">
+        <mat-icon>list</mat-icon>
+        <span>Listes</span>
+      </a>
+      <a mat-list-item routerLink="/users" routerLinkActive="active">
+        <mat-icon>people</mat-icon>
+        <span>Utilisateurs</span>
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <section class="content">
+    <!-- Ici, chaque composant s'affiche selon la route -->
+    <router-outlet></router-outlet>
+  </section>
+</mat-drawer-container>

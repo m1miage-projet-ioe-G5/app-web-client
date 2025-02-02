@@ -1,0 +1,76 @@
+<mat-card class="user-container">
+  <mat-card-header>
+    <mat-card-title>Gestion des Utilisateurs</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form #userForm="ngForm" (ngSubmit)="onSubmit()" class="user-form">
+      <h3>Créer un nouvel utilisateur</h3>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Numéro</mat-label>
+        <input matInput
+               type="text"
+               name="numero"
+               [(ngModel)]="newUser.numero"
+               required
+               #numero="ngModel">
+        <mat-error *ngIf="numero.invalid && (numero.dirty || numero.touched)">
+          Le numéro est requis
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Nom</mat-label>
+        <input matInput
+               type="text"
+               name="nom"
+               [(ngModel)]="newUser.nom"
+               required
+               #nom="ngModel">
+        <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched)">
+          Le nom est requis
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Prénom</mat-label>
+        <input matInput
+               type="text"
+               name="prenom"
+               [(ngModel)]="newUser.prenom"
+               required
+               #prenom="ngModel">
+        <mat-error *ngIf="prenom.invalid && (prenom.dirty || prenom.touched)">
+          Le prénom est requis
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="userForm.invalid">
+        Créer
+      </button>
+    </form>
+
+    <div *ngIf="message"
+         class="message-container"
+         [ngClass]="messageType">
+      {{ message }}
+    </div>
+
+    <mat-card *ngIf="users.length > 0" class="users-list">
+      <mat-card-header>
+        <mat-card-title>Liste des Utilisateurs</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let user of users">
+            {{ user.nom }} ({{ user.numero }})
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-card-content>
+</mat-card>
